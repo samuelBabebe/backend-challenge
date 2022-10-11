@@ -1,0 +1,19 @@
+{
+  "name": "backend-challenge",
+  "version": "1.0.0",
+  "description": "assesment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -c ./jest.config.json",
+    "start": "node index.js"
+  },
+
+  "author": "Samuel Abebe",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2"
+  }
+}
