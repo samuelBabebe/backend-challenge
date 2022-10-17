@@ -1,9 +1,13 @@
-const { fail } = require("assert");
-const fs = require("fs");
-const { readCsv } = require("../readCsv.js");
+
+//const fs = require("fs");
+import fs from "fs"
+import readCsv from "../readCsv.mjs"
+
+jest.mock("fs")
 
 describe("readCsv tests", () => {
   it("should return the right data", async () => {
+    const fakePath = "/fake/path";
     fs.readFile = jest.fn((paths, encoding, callback) => {
       callback(
         null,
@@ -11,7 +15,7 @@ describe("readCsv tests", () => {
           "50777445|WEB 3RD PARTY|342121211|43233|LOAD|TEST 0|04/29/2000|3100 S Ashley Drive||Chandler|AZ|85286||test0@humancaresystems.com|Y|1234567912"
       );
     });
-    let result = await readCsv();
+    let result = await readCsv(fakePath);
     let expectedPatientResult = {
       "Program Identifier": "50777445",
       "Data Source": "WEB 3RD PARTY",
@@ -42,3 +46,4 @@ describe("readCsv tests", () => {
     await expect(readCsv()).rejects.toThrow(new Error("file can't be read"));
   });
 });
+
